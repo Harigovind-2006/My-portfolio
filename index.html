@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harigovind M — Full-Stack Developer & Security Enthusiast</title>
+  <meta name="description" content="Portfolio of Harigovind M — Full-Stack Developer and AI & Security Enthusiast. Explore projects in web development, cybersecurity, and AI-powered systems." />
+
+  <!-- Preconnect and Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Custom Preloader Overlay -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <span class="logo-dot"></span>
+        <span class="loader-logo-text scramble-onload" data-text="HARIGOVIND">HARIGOVIND</span>
+      </div>
+      <div class="loader-tagline">Architecting secure code. Building intelligent systems.</div>
+      <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+    </div>
+  </div>
+
+  <!-- Aesthetic Grid and Noise Overlays -->
+  <div class="grid-overlay"></div>
+  <div class="noise-overlay"></div>
+
+  <!-- Background WebGL/Canvas Particle Scene -->
+  <canvas id="ghost-cursor-canvas"></canvas>
+
+  <!-- ═══════════════════════════════════════════
+       FIXED HEADER NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <header class="nav-header">
+    <div class="logo-wrap" id="nav-logo">
+      <span class="logo-dot"></span>
+      <span class="scramble-hover" data-text="HARIGOVIND">HARIGOVIND</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#home" class="nav-link active scramble-hover" data-text="Home">Home</a>
+      <a href="#portfolio" class="nav-link scramble-hover" data-text="Works">Works</a>
+      <a href="#about" class="nav-link scramble-hover" data-text="About">About</a>
+      <a href="#contact" class="nav-link scramble-hover" data-text="Contact">Contact</a>
+    </nav>
+
+    <div class="nav-right">
+      <button class="sound-toggle muted" id="sound-btn" aria-label="Toggle sound feedback">
+        <span class="sound-text scramble-hover" data-text="SOUND">SOUND</span>
+        <div class="sound-icon-bars">
+          <span class="sound-bar"></span>
+          <span class="sound-bar"></span>
+          <span class="sound-bar"></span>
+        </div>
+      </button>
+      <a href="resume.pdf" download class="cv-download slot-button">
+        <span class="slot-text-wrap">
+          <span class="slot-text">Download CV</span>
+          <span class="slot-text-hover">Download CV</span>
+        </span>
+      </a>
+      
+      <!-- Mobile Hamburger Button -->
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobile-menu">
+    <nav class="mobile-nav-links">
+      <a href="#home" class="mobile-nav-link scramble-hover" data-text="Home">Home</a>
+      <a href="#portfolio" class="mobile-nav-link scramble-hover" data-text="Works">Works</a>
+      <a href="#about" class="mobile-nav-link scramble-hover" data-text="About">About</a>
+      <a href="#contact" class="mobile-nav-link scramble-hover" data-text="Contact">Contact</a>
+    </nav>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       LEFT INDICATOR PAGINATION
+  ═══════════════════════════════════════════ -->
+  <div class="sidebar-indicator">
+    <div class="indicator-step active" data-target="home">
+      <span class="indicator-num">01</span>
+      <span class="indicator-line"></span>
+    </div>
+    <div class="indicator-step" data-target="portfolio">
+      <span class="indicator-num">02</span>
+      <span class="indicator-line"></span>
+    </div>
+    <div class="indicator-step" data-target="about">
+      <span class="indicator-num">03</span>
+      <span class="indicator-line"></span>
+    </div>
+    <div class="indicator-step" data-target="contact">
+      <span class="indicator-num">04</span>
+      <span class="indicator-line"></span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       RIGHT TWEAKPANE CONTROLLER
+  ═══════════════════════════════════════════ -->
+  <button class="tweak-toggle-btn" id="tweak-toggle" aria-label="Open developer parameters widget">⚙️</button>
+  <div class="tweak-panel minimized" id="tweak-panel">
+    <div class="tweak-header">
+      <span class="tweak-title">Control Panel</span>
+    </div>
+    <div class="tweak-group">
+      <!-- Particle Count -->
+      <div class="tweak-row">
+        <div class="tweak-label-row">
+          <span>Particles</span>
+          <span class="tweak-val" id="val-count">75</span>
+        </div>
+        <div class="tweak-input-wrap">
+          <input type="range" class="tweak-slider" id="param-count" min="10" max="200" value="75" />
+        </div>
+      </div>
+      <!-- Link Distance -->
+      <div class="tweak-row">
+        <div class="tweak-label-row">
+          <span>Distance</span>
+          <span class="tweak-val" id="val-dist">120</span>
+        </div>
+        <div class="tweak-input-wrap">
+          <input type="range" class="tweak-slider" id="param-dist" min="40" max="250" value="120" />
+        </div>
+      </div>
+      <!-- Speed -->
+      <div class="tweak-row">
+        <div class="tweak-label-row">
+          <span>Speed</span>
+          <span class="tweak-val" id="val-speed">0.8</span>
+        </div>
+        <div class="tweak-input-wrap">
+          <input type="range" class="tweak-slider" id="param-speed" min="0.1" max="3" step="0.1" value="0.8" />
+        </div>
+      </div>
+      <!-- Gravity strength -->
+      <div class="tweak-row">
+        <div class="tweak-label-row">
+          <span>Attraction</span>
+          <span class="tweak-val" id="val-gravity">0.25</span>
+        </div>
+        <div class="tweak-input-wrap">
+          <input type="range" class="tweak-slider" id="param-gravity" min="0.0" max="1" step="0.05" value="0.25" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCROLL CONTAINER WRAPPER
+  ═══════════════════════════════════════════ -->
+  <main class="scroll-container">
+
+    <!-- ═══════════════════════════════════════════
+         01. HERO SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="snap-section hero" id="home">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="logo-dot"></span>
+          <span>FULL-STACK &amp; CYBERSECURITY ENTHUSIAST</span>
+        </div>
+        <h1 class="hero-title scramble-hover" data-text="HARIGOVIND">HARIGOVIND</h1>
+        <p class="hero-desc">
+          I build intelligent, secure web applications using the React–API–Database stack.
+          Currently a 4th-year CSE student bridging the gap between automated AI solutions
+          and real-world security challenges.
+        </p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn-primary slot-button" id="btn-explore">
+            <span class="slot-text-wrap">
+              <span class="slot-text">Explore Work</span>
+              <span class="slot-text-hover">Explore Work</span>
+            </span>
+          </a>
+          <a href="#contact" class="btn-secondary slot-button" id="btn-connect">
+            <span class="slot-text-wrap">
+              <span class="slot-text">Get in Touch</span>
+              <span class="slot-text-hover">Get in Touch</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- scroll to explore vertical text -->
+      <div class="kv-scroll-text">
+        <span>scroll to explore →</span>
+      </div>
+
+      <div class="hero-socials">
+        <!-- GitHub -->
+        <a href="https://github.com/Harigovind-2006" target="_blank" rel="noopener" class="social-icon-link" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/harigovind-m-64b628290/" target="_blank" rel="noopener" class="social-icon-link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/hari_govind45/" target="_blank" rel="noopener" class="social-icon-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         TICKER / MARQUEE SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="snap-section updates-section" id="updates">
+      <div class="ticker-wrap">
+        <div class="ticker">
+          <div class="ticker-item"><span class="ticker-dot"></span>FugenHack Prize Winner</div>
+          <div class="ticker-item"><span class="ticker-dot"></span>4th Year CSE Student</div>
+          <div class="ticker-item"><span class="ticker-dot"></span>Full-Stack Developer</div>
+          <div class="ticker-item"><span class="ticker-dot"></span>Gemini AI Automation</div>
+          <div class="ticker-item"><span class="ticker-dot"></span>AEGIS IDS Intrusion Dashboard</div>
+          <div class="ticker-item"><span class="ticker-dot"></span>Blockchain Cryptography</div>
+          <!-- Duplicate for infinite marquee wrap -->
+          <div class="ticker-item"><span class="ticker-dot"></span>FugenHack Prize Winner</div>
+          <div class="ticker-item"><span class="ticker-dot"></span>4th Year CSE Student</div>
+          <div class="ticker-item"><span class="ticker-dot"></span>Full-Stack Developer</div>
+          <div class="ticker-item"><span class="ticker-dot"></span>Gemini AI Automation</div>
+          <div class="ticker-item"><span class="ticker-dot"></span>AEGIS IDS Intrusion Dashboard</div>
+          <div class="ticker-item"><span class="ticker-dot"></span>Blockchain Cryptography</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         02. PORTFOLIO SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="snap-section portfolio-section" id="portfolio">
+      <header class="section-header">
+        <div class="section-label">
+          <span class="logo-dot"></span>SELECTED WORK
+        </div>
+        <h2 class="section-title scramble-hover" data-text="Projects">Projects</h2>
+      </header>
+
+      <div class="portfolio-grid">
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-graphic-wrap">
+            <span class="project-tag">AI / Mobile App</span>
+            <!-- Custom Scanning & Neural SVG -->
+            <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="30" y="30" width="340" height="160" rx="4" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" />
+              <!-- Document crop layout -->
+              <rect x="70" y="50" width="260" height="120" rx="2" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4 4" />
+              <!-- Neural link nodes -->
+              <g stroke="var(--accent)" stroke-width="0.8">
+                <line x1="120" y1="110" x2="200" y2="80" opacity="0.3" />
+                <line x1="120" y1="110" x2="200" y2="140" opacity="0.3" />
+                <line x1="200" y1="80" x2="280" y2="110" opacity="0.3" />
+                <line x1="200" y1="140" x2="280" y2="110" opacity="0.3" />
+              </g>
+              <circle cx="120" cy="110" r="4" fill="var(--accent)" />
+              <circle cx="200" cy="80" r="4" fill="#fff" />
+              <circle cx="200" cy="140" r="4" fill="#fff" />
+              <circle cx="280" cy="110" r="6" fill="var(--accent)" />
+              
+              <!-- Scanning laser indicator -->
+              <line class="laser-line" x1="60" y1="95" x2="340" y2="95" stroke="var(--accent)" stroke-width="1.5" opacity="0.8" />
+              <line class="laser-line" x1="60" y1="95" x2="340" y2="95" stroke="#fff" stroke-width="0.5" />
+              
+              <!-- OCR Tech Text -->
+              <text x="76" y="70" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="8">GEMINI_AI_PARSER v1.0</text>
+              <text x="76" y="155" fill="var(--accent)" font-family="monospace" font-size="9" font-weight="bold">CONFIDENCE: 98% [A+]</text>
+            </svg>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title scramble-hover" data-text="Answer Sheet Evaluation">Answer Sheet Evaluation</h3>
+            <p class="project-desc">AI-powered extraction and evaluation using the Gemini API — reducing manual grading time by 80%.</p>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-graphic-wrap">
+            <span class="project-tag">Security / Web App</span>
+            <!-- Cyber Shield & Alert Node graph SVG -->
+            <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="30" y="30" width="340" height="160" rx="4" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" />
+              <!-- Radar sweep circle -->
+              <circle cx="200" cy="110" r="60" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+              <circle cx="200" cy="110" r="35" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+              <line class="radar-hand" x1="200" y1="110" x2="200" y2="50" stroke="var(--accent)" stroke-width="1.5" opacity="0.7" />
+              <!-- Central Shield path -->
+              <path d="M200 65 L230 75 V110 C230 135 200 155 200 155 C200 155 170 135 170 110 V75 Z" fill="rgba(215, 255, 0, 0.05)" stroke="var(--accent)" stroke-width="2" />
+              
+              <!-- Packet network routes -->
+              <g stroke="rgba(255,255,255,0.15)" stroke-width="1">
+                <path d="M50 110 H170" />
+                <path d="M230 110 H350" />
+                <path d="M80 80 L180 100" />
+                <path d="M320 140 L220 120" />
+              </g>
+              <!-- Alert glowing node -->
+              <circle class="alert-node" cx="95" cy="83" r="3" fill="#ff4c4c" />
+              <circle class="alert-ring" cx="95" cy="83" r="8" stroke="#ff4c4c" stroke-width="1" opacity="0.6" />
+              
+              <!-- Clean Dashboard text -->
+              <text x="250" y="60" fill="rgba(255,255,255,0.3)" font-family="monospace" font-size="8">AEGIS_IDS.SYS</text>
+              <text x="250" y="72" fill="#ff4c4c" font-family="monospace" font-size="8">[INTRUSION DETECTED]</text>
+            </svg>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title scramble-hover" data-text="AEGIS IDS">AEGIS IDS</h3>
+            <p class="project-desc">Real-time network anomaly detection and traffic monitoring with a live risk-score dashboard.</p>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="project-graphic-wrap">
+            <span class="project-tag">Blockchain / Web App</span>
+            <!-- Cryptography key lock SVG -->
+            <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="30" y="30" width="340" height="160" rx="4" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" />
+              <!-- Rotating key cipher ring -->
+              <circle class="crypto-ring" cx="200" cy="110" r="50" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-dasharray="10 6" />
+              <circle class="crypto-ring-reverse" cx="200" cy="110" r="40" stroke="var(--accent)" stroke-width="1.5" opacity="0.4" stroke-dasharray="5 5" />
+              <!-- Vault padlock graphic -->
+              <rect x="182" y="102" width="36" height="28" rx="2" fill="var(--bg-card)" stroke="#fff" stroke-width="1.5" />
+              <path d="M189 102 V90 C189 83 211 83 211 90 V102" stroke="#fff" stroke-width="1.5" stroke-linecap="round" />
+              <circle cx="200" cy="114" r="3" fill="var(--accent)" />
+              
+              <!-- Ledger chain blocks -->
+              <rect x="70" y="98" width="24" height="24" rx="2" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+              <rect x="306" y="98" width="24" height="24" rx="2" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+              <line x1="94" y1="110" x2="150" y2="110" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="250" y1="110" x2="306" y2="110" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 4" />
+
+              <text x="66" y="60" fill="rgba(255,255,255,0.3)" font-family="monospace" font-size="8">CYBER_VAULT.SH</text>
+              <text x="66" y="72" fill="var(--accent)" font-family="monospace" font-size="8">HASH: 0x8f2d...c3b4</text>
+            </svg>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title scramble-hover" data-text="Cyber Vault">Cyber Vault</h3>
+            <p class="project-desc">Blockchain-based digital piggy bank with time-locked deposits and decentralised key management.</p>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card">
+          <div class="project-graphic-wrap">
+            <span class="project-tag">Admin / Web App</span>
+            <!-- Room layout / structural block layout SVG -->
+            <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="30" y="30" width="340" height="160" rx="4" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" />
+              <!-- Isometric building layout block schema -->
+              <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+                <!-- Isometric grid lines -->
+                <line x1="200" y1="50" x2="320" y2="120" />
+                <line x1="200" y1="50" x2="80" y2="120" />
+                <line x1="80" y1="120" x2="200" y2="190" />
+                <line x1="320" y1="120" x2="200" y2="190" />
+                
+                <!-- Inner Room blocks -->
+                <path d="M200 90 L250 118 L200 146 L150 118 Z" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.15)" />
+                <path d="M200 146 L250 118 V140 L200 168 Z" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.15)" />
+                <path d="M200 146 L150 118 V140 L200 168 Z" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.15)" />
+
+                <!-- Highlight allocation room -->
+                <path d="M200 90 L250 118 L200 146 L150 118 Z" fill="rgba(215, 255, 0, 0.08)" stroke="var(--accent)" stroke-width="1.5" />
+              </g>
+
+              <circle cx="200" cy="118" r="4" fill="var(--accent)" />
+              <line class="beacon-line" x1="200" y1="118" x2="200" y2="70" stroke="var(--accent)" stroke-width="1" />
+              <circle class="beacon-dot" cx="200" cy="70" r="3" fill="#fff" />
+              <circle class="beacon-ring" cx="200" cy="70" r="8" stroke="var(--accent)" stroke-width="1" opacity="0.7" />
+
+              <text x="60" y="55" fill="rgba(255,255,255,0.3)" font-family="monospace" font-size="8">HOSTEL_DB.ALLOCATION</text>
+              <text x="60" y="67" fill="var(--accent)" font-family="monospace" font-size="8">ROOM 405 -> OCCUPIED</text>
+            </svg>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title scramble-hover" data-text="Hostel Management System">Hostel Management System</h3>
+            <p class="project-desc">Comprehensive system for student room allocation, requests, and administration workflows.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         03. ABOUT SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="snap-section about-section" id="about">
+      <header class="section-header">
+        <div class="section-label">
+          <span class="logo-dot"></span>WHO I AM
+        </div>
+        <h2 class="section-title scramble-hover" data-text="About Me">About Me</h2>
+      </header>
+
+      <div class="about-grid">
+        <!-- Bio text -->
+        <div class="about-bio">
+          <h3 class="about-name">I'm <span class="scramble-hover" data-text="Harigovind M">Harigovind M</span></h3>
+          <p class="about-text">
+            A Computer Science Engineering student specialising in building robust, modern web applications.
+            Deep-diving into the full-stack ecosystem — mastering <strong>API services, databases, and React</strong>
+            to ship scalable, AI-driven solutions.
+          </p>
+          <p class="about-text">
+            From automated evaluation systems powered by <strong>Gemini AI</strong> to real-time intrusion detection dashboards,
+            I constantly push the frontier of what's possible. I aim to bridge technical innovation with community
+            leadership — whether leading hackathon teams or shipping production-grade tools.
+          </p>
+        </div>
+
+        <!-- Metric Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-num">4th</span>
+            <span class="stat-label">Year CSE Student</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">5+</span>
+            <span class="stat-label">Tech Projects</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">2nd</span>
+            <span class="stat-label">FugenHack Prize</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">2+</span>
+            <span class="stat-label">Leadership Roles</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- What I Do Capabilities -->
+      <div class="capabilities-wrap">
+        <h3 class="capabilities-title scramble-hover" data-text="Capabilities">Capabilities</h3>
+        <div class="do-grid">
+          <div class="do-card">
+            <div class="do-icon-wrap">🎨</div>
+            <h4 class="do-title">Frontend Design</h4>
+            <p class="do-desc">Clean, responsive, and interactive UI for modern web apps with pixel-perfect precision.</p>
+          </div>
+          <div class="do-card">
+            <div class="do-icon-wrap">⚡</div>
+            <h4 class="do-title">Backend Engineering</h4>
+            <p class="do-desc">Scalable REST APIs, microservices, and real-time data pipelines using Node.js &amp; Python.</p>
+          </div>
+          <div class="do-card">
+            <div class="do-icon-wrap">🔐</div>
+            <h4 class="do-title">AI &amp; Security</h4>
+            <p class="do-desc">Integrating Gemini AI, anomaly detection, and blockchain-based solutions into production systems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         04. CONTACT SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="snap-section contact-section" id="contact">
+      <header class="section-header">
+        <div class="section-label">
+          <span class="logo-dot"></span>REACH OUT
+        </div>
+        <h2 class="section-title scramble-hover" data-text="Contact">Contact</h2>
+      </header>
+
+      <div class="contact-layout">
+        <!-- Contact Cards Panel -->
+        <div class="contact-info-panel">
+          <!-- Email Card -->
+          <a href="mailto:harigovindmankulam@gmail.com" class="contact-card">
+            <div class="contact-icon-box">📧</div>
+            <div class="contact-card-details">
+              <h5>Email</h5>
+              <p>harigovindmankulam@gmail.com</p>
+            </div>
+          </a>
+
+          <!-- LinkedIn Card -->
+          <a href="https://www.linkedin.com/in/harigovind-m-64b628290/" target="_blank" rel="noopener" class="contact-card">
+            <div class="contact-icon-box">🔗</div>
+            <div class="contact-card-details">
+              <h5>LinkedIn</h5>
+              <p>Say hello on LinkedIn</p>
+            </div>
+          </a>
+
+          <!-- GitHub Card -->
+          <a href="https://github.com/Harigovind-2006" target="_blank" rel="noopener" class="contact-card">
+            <div class="contact-icon-box">💻</div>
+            <div class="contact-card-details">
+              <h5>GitHub</h5>
+              <p>Check out my repositories</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Contact Form Card -->
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <input type="text" class="form-input" id="name" required placeholder="YOUR NAME" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-input" id="email" required placeholder="YOUR EMAIL" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <textarea class="form-input" id="message" required placeholder="YOUR MESSAGE" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn-primary btn-submit slot-button" id="btn-submit">
+            <span class="slot-text-wrap">
+              <span class="slot-text">Send Message &nbsp;→</span>
+              <span class="slot-text-hover">Send Message &nbsp;→</span>
+            </span>
+          </button>
+        </form>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="footer-wrap">
+        <div class="footer-brand">
+          <span class="logo-dot"></span>
+          <span class="scramble-hover" data-text="HARIGOVIND STUDIO">HARIGOVIND STUDIO</span>
+        </div>
+        <p>© 2026 Harigovind M. All rights reserved.</p>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
