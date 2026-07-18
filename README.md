@@ -16,7 +16,7 @@ Here are some of my selected works:
 
 ## 📬 Contact
 Whether you have a project idea, an open role, or just want to talk tech — I'd love to hear from you.
-- **Email**: [EMAIL_ADDRESS](mailto:[EMAIL_ADDRESS])
+- **Email**: [EMAIL_ADDRESS](mailto:[harigovidmankulam@gmail.com])
 - **LinkedIn**: [Harigovind M](https://linkedin.com/in/harigovind-m-64b628290/)
 - **GitHub**: [Harigovind-2006](https://github.com/Harigovind-2006)
 
