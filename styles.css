@@ -1427,6 +1427,14 @@ textarea.form-input {
    RESPONSIVE DESIGN (MEDIA QUERIES)
    ═══════════════════════════════════════════ */
 @media (max-width: 1024px) {
+  section.snap-section {
+    padding: 80px 5%;
+  }
+
+  .nav-header {
+    padding: 20px 5%;
+  }
+
   .about-grid, .contact-layout {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -1459,12 +1467,28 @@ textarea.form-input {
     display: none; /* Hide header menu, show core buttons or stack */
   }
   
+  .nav-right {
+    gap: 12px;
+  }
+
+  .sound-toggle {
+    display: none; /* Hide sound toggle on mobile for space */
+  }
+
+  .cv-download {
+    display: none; /* Hide in header on mobile to save space */
+  }
+
+  .logo-wrap {
+    font-size: 1.1rem; /* Slightly smaller logo for small screens */
+  }
+
   .hamburger-btn {
     display: flex;
   }
 
   section.snap-section {
-    padding: 80px 20px;
+    padding: 100px 20px 60px 20px;
     height: auto;
     min-height: 100vh;
     scroll-snap-align: none;
@@ -1481,7 +1505,9 @@ textarea.form-input {
   }
 
   .hero-title {
-    font-size: 4rem;
+    font-size: clamp(1.8rem, 8.5vw, 3rem); /* Safe font size for 10-letter word on 320px screens */
+    letter-spacing: 0;
+    overflow-wrap: break-word;
   }
 
   .hero-actions {
@@ -1492,6 +1518,24 @@ textarea.form-input {
   .btn-primary, .btn-secondary {
     width: 100%;
     text-align: center;
+  }
+
+  .hero-socials {
+    position: relative;
+    bottom: auto;
+    margin-top: 40px;
+  }
+
+  .kv-scroll-text {
+    display: none; /* Hide scroll text on mobile to prevent overlap */
+  }
+
+  .project-graphic-wrap {
+    height: 180px;
+  }
+
+  .contact-form {
+    padding: 24px 20px;
   }
 
   .footer-wrap {
